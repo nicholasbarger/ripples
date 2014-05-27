@@ -1,0 +1,31 @@
+<div class="form-control">
+  <label for="{{name.toLower()}}">{{label}}</label>
+  
+  <!-- text -->
+  <input type="text" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='text'">
+
+  <!-- textarea -->
+  <textarea id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" rows="5" ng-if="type==='textarea'"></textarea>
+  
+  <!-- date -->
+  <input type="date" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='date'">
+  
+  <!-- datetime -->
+  <input type="datetime" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='datetime'">
+  
+  <!-- dropdown -->
+  <select id="{{name}}" name="{{name}}" ng-if="type==='dropdown'"></select>
+  
+  <!-- checkbox -->
+  <input type="checkbox" id="{{name}}" name="{{name}}" ng-if="type==='checkbox'">
+  
+  <!-- checkboxlist -->
+  <p class="todo" ng-if="type==='checkboxlist'">checkboxlist</p>
+  
+  <!-- radiobuttongroup -->
+  <p class="todo" ng-if="type==='radiobuttongroup'">radiobuttongroup</p>
+  
+  <!-- fileupload -->
+  <p class="todo" ng-if="type==='fileupload'">fileupload</p>
+  
+</div>
