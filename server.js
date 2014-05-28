@@ -2,7 +2,10 @@ var http = require('http');
 var express = require('express');
 var bodyParser = require('body-parser');
 
-var port = 8080;
+var Payload = require('./models/payload.js');
+var Ripple = require('./models/ripple.js');
+
+var port = 3000;
 
 var app = express();
 app.use(bodyParser());
@@ -23,27 +26,25 @@ app.get('/develop', function(req, res) {
 
 // get a list of ripples
 app.get('/ripples', function(req, res) {
-  var payload = {
-    data: [{_id: '0923js-109283-alsdi-230910', name: 'validate contact form'}],  
-    dataTimestamp: new Date(),
-    availableCount: 0
-  };
+  var data = [new Ripple('0923js-109283-alsdi-230910', 'validate contact form')];
+  console.log(data);
+  var dataTimestamp = new Date();
+  var payload = new Payload(data, dataTimestamp);
+  console.log(payload);
   res.json(payload);
 });
 
 // get a specific ripple by _id
 app.get('/ripples/:id', function(req, res) {
-  var payload = {
-    data: { _id: '0923js-109283-alsdi-230910', name: 'validate contact form', description: 'just a simple validation ripple for a basic contact form.'}
-  };
+  var data = new Ripple('0923js-109283-alsdi-230910', 'validate contact form', 'just a simple validation ripple for a basic contact form.');
+  var dataTimestamp = new Date();
+  var payload = new Payload(data, dataTimestamp);
   res.json(payload);
 });
 
 // save changes to a specific ripple by _id
 app.post('/ripples/:id', function(req, res) {
-  var payload = {
-    data: true  
-  };
+  var payload = new Payload(true, new Date());
   res.json(payload);
 });
 
@@ -68,7 +69,7 @@ app.post('/execute/:ripple', function(req, res) {
 });
 
 var server = app.listen(port, function() {
-  console.log('Listening on port %d', server.address().port);
+  console.log('Webserver started at http://localhost:%d/', server.address().port);
 })
 
 function logErrors(err, req, res, next) {
