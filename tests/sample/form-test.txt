@@ -1,0 +1,10 @@
+{
+  "input": {
+      "firstName": "Nicholas",
+      "lastName": "Barger",
+      "email": "nicholas@nicholasbarger.com",
+      "message": "I am interested in learning more about building modular applications using service bus techniques."
+  }
+}
+
+curl -d '{"input": {"firstName": "Nicholas","lastName": "Barger","email": "nicholas@nicholasbarger.com","message": "I am interested in learning more about building modular applications using service bus techniques."}}' -H "Content-Type: application/json" http://127.0.0.1:3000/

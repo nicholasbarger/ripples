@@ -1,0 +1,17 @@
+// A single ripple
+var data = new Ripple('0923js-109283-alsdi-230910', 'validate contact form', 'just a simple validation ripple for a basic contact form.');
+var dataTimestamp = new Date();
+
+// A collection of ripples
+var data = [new Ripple('0923js-109283-alsdi-230910', 'validate contact form')];
+var dataTimestamp = new Date();
+
+// Insert a ripple
+var rawInsert = {
+  name: 'logging',
+  description: 'simple logging to a console',
+  code: 'console.log(\'Hello World\');',
+  sampleInput: null,
+  sampleOutput: '{ output: false }'
+};
+db.ripples.insert(rawInsert);

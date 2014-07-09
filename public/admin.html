@@ -8,9 +8,9 @@
     
     <!-- list of ripples -->
     <div style="display: inline-block; width:25%">
-      <input type="search" placeholder="{{searchText}}">
+      <input type="search" placeholder="{{searchText}}" ng-model="searchText">
       <ul class="list todo">
-        <li ng-repeat="ripple in ripples" ng-click="loadRippleDetail(ripple);">{{ripple.name}}</li>
+        <li ng-repeat="ripple in ripples | filter:searchText" ng-click="loadRippleDetail(ripple);">{{ripple.name}}</li>
       </ul>
     </div>
     
