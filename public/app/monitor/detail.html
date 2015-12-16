@@ -1,0 +1,14 @@
+<h2>{{ vm.instance.display }}</h2>
+<small>{{ vm.instance.started }} to {{ vm.instance.ended }} ({{ vm.instance.runtime }})</small>
+
+<h3>Description</h3>
+<p>{{ vm.instance.description }}</p>
+
+<h4>Input</h4>
+<code>{{ vm.instance.input }}</code>
+
+<h4>Output</h4>
+<code>{{ vm.instance.output }}</code>
+
+<h4>Ripple Sequence</h4>
+<!-- todo: show graphically all of the ripples and whether they've run or not as well as if there were any errors during instance runs (this would be nice in svg or canvas) -->

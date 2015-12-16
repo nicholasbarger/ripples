@@ -1,0 +1,23 @@
+<table>
+	<thead>
+		<tr>
+			<th>Title</th>
+			<th>Version</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="vm.ripples as ripple">
+			<td>{{ ripple.display }}</td>
+			<td>{{ ripple.version }}</td>
+			<td><!-- todo: add action context menu here --></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="3">
+				<!-- todo: add pager here -->
+			</td>
+		</tr>
+	</tfoot>
+</table>

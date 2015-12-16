@@ -1,0 +1,39 @@
+<html ng-app="app">
+	<head>
+		<title>Ripples</title>
+		<!-- todo: add meta tags -->
+		<!-- todo: google analytics here -->
+
+		<!-- todo: add css -->
+	</head>
+	<body>
+		<!-- title and navigation -->
+		<header>
+			<h1>Ripples</h1>
+			<nav>
+				<ul>
+					<li><a href="gallery">Gallery</a></li>
+					<li><a href="monitor">Monitor Ripples</a></li>
+					<li><a href="ide">Ripple Builder</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- main content for each route -->
+		<div class="content">
+			<ng-view></ng-view>
+		</div>
+
+		<!-- lesser links -->
+		<footer>
+			<ul>
+				<li><a href="contact">Contact Ripples</a></li>
+				<li><a href="agreement">Usage Agreement</a></li>
+			</ul>
+		</footer>
+
+		<!-- todo: need gulp to build js files, or perhaps review webpack -->
+		<script type="text/javascript" src="../app/vendor.js"></script>
+		<script type="text/javascript" src="../app/build.js"></script>
+	</body>
+</html>

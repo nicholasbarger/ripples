@@ -1,0 +1,22 @@
+!function(){"use strict";angular.module("app.core",["ngRoute"])}();
+!function(){"use strict";angular.module("app.ide",["app.core"])}();
+!function(){"use strict";angular.module("app",["app.ide"])}();
+!function(){"use strict";angular.module("app").config(function(){})}();
+!function(){"use strict";angular.module("app.core").directive("rip-grid",function(){return{restrict:"E",scope:{data:"@"},templateUrl:"rip-grid.directive.tmpl.html",transclude:!0,controllerAs:"ripGridController",controller:function(){}}})}();
+!function(){"use strict";angular.module("app.core").directive("ripInput",function(){return{restrict:"E",scope:{label:"@",name:"@",ngModel:"@",placeholder:"@",readonly:"@",type:"@"},templateUrl:"core/rip-input.directive.tmpl.html",controllerAs:"ripInputController",controller:function(){}}})}();
+!function(){"use strict";angular.module("app.core").factory("rippleApi",["$http",function(t){function n(n,r,a,i,u){return-1===r.indexOf("api/v")&&(r="/api/v1"+r),t({method:n,url:r,data:a})}return{call:n}}])}();
+!function(){"use strict";angular.module("app-gallery",[])}();
+!function(){"use strict";function l(l){l.when("/gallery",{templateUrl:"index.html",controller:"IndexController"}).when("/gallery/ripples/:id",{templateUrl:"gallery-detail.html",controller:"GalleryDetailController"})}angular.module("app-gallery").config(l),l.$inject=["$routeProvider"]}();
+!function(){"use strict";function e(e){e.when("/ide",{templateUrl:"ide/index.html",controller:"IndexController",controllerAs:"vm"}).when("/ide/create",{templateUrl:"ide/create.html",controller:"CreateController",controllerAs:"vm",resolve:{ripple:["createService",function(e){return e.newRipple()}]}}).when("/ide/detail/:id",{templateUrl:"ide/detail.html",controller:"DetailController",controllerAs:"vm",resolve:{ripple:["editService",function(e){return e.ripple}]}}).when("/ide/disable/:id",{templateUrl:"ide/disable.html",controller:"DisableController",controllerAs:"vm",resolve:{ripple:["editService",function(e){return e.ripple}]}}).when("/ide/edit/:id",{templateUrl:"ide/edit.html",controller:"EditController",controllerAs:"vm",resolve:{ripple:["editService",function(e){return e.ripple}]}})}angular.module("app.ide").config(e),e.$inject=["$routeProvider"]}();
+!function(){"use strict";angular.module("app.ide").controller("CreateController",["createService","ripple",function(e,r){var c=this;c.cancel=e.cancel(),c.submit=e.save()}])}();
+!function(){"use strict";angular.module("app.ide").factory("createService",["$window","rippleApi",function(e,n){function i(){e.history.back()}function r(){return n.call("get","/ripples/new")}function t(e){return n.call("post","/ripples",e)}return{cancel:i,newRipple:r,save:t}}])}();
+!function(){"use strict";angular.module("app.ide").controller("DetailController",["ripple",function(l){}])}();
+
+!function(){"use strict";angular.module("app.ide").controller("EditController",["editService","ripple",function(e,i){var n=this;n.incrementVersion=e.incrementVersion,n.save=e.save}])}();
+!function(){"use strict";angular.module("app.ide").factory("editService",["rippleApi",function(e){function n(n){return e.call("delete","/ripples/"+n)}function r(e){return e++}function i(n){return e.call("get","/ripples/"+n)}function t(n){return e.call("put","/ripples/"+n._id,n)}return{disable:n,incrementVersion:r,load:i,save:t}}])}();
+!function(){"use strict";angular.module("app.ide").controller("IndexController",["indexService",function(e){var r=this;r.filter=e.filter,r.ripples=e.load(r.filter)}])}();
+!function(){"use strict";angular.module("app.ide").factory("indexService",["rippleApi",function(e){function i(i){return e.call("get","/ripples",i)}return{filter:{},load:i}}])}();
+!function(){"use strict";angular.module("app.ide").directive("ripFilter",function(){return{restrict:"E",scope:{data:"=",fetch:"@"},templateUrl:"ide/rip-filter.directive.tmpl.html",controllerAs:"ripFilterController",controller:function(){var t=this;t.criteria={},t.filter=function(){fetch(function(r){t.data=r.data})}}}})}();
+!function(){"use strict";angular.module("app-monitor",[])}();
+!function(){"use strict";angular.module("app-monitor").config(["$routeProvider",function(o){o.when("/monitor",{templateUrl:"index.html",controller:"IndexController"})}])}();
+!function(){"use strict";angular.module("app-monitor").controller("IndexController",["indexService",function(e){var n=this;n.filter=e.filter,n.instances=e.load(n.filter)}])}();

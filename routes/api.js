@@ -5,7 +5,7 @@ var Ripple = require('../models/ripple.js');
 
 module.exports = function(app) {
   // get a list of ripples
-  app.get('/ripples', function (req, res) {
+  app.get('/api/v1/ripples', function (req, res) {
     
     var db = req.db;
     var collection = db.get('ripples');
@@ -18,7 +18,7 @@ module.exports = function(app) {
   });
 
   // get a specific ripple by _id
-  app.get('/ripples/:id', function (req, res) {
+  app.get('/api/v1/ripples/:id', function (req, res) {
     
     var db = req.db;
     var collection = db.get('ripples');
@@ -30,7 +30,7 @@ module.exports = function(app) {
   });
 
   // save changes to a specific ripple by _id
-  app.post('/ripples/:id', function (req, res) {
+  app.post('/api/v1/ripples/:id', function (req, res) {
     
     var payload = new Payload();
     var db = req.db;
@@ -60,7 +60,7 @@ module.exports = function(app) {
   });
 
   // clone an existing ripple (must be public or owned by requesting user)
-  app.post('/ripples/:id/clone', function(req, res) {
+  app.post('/api/v1/ripples/:id/clone', function(req, res) {
     var rippleSource = getRipple(req.params.id);
     var rippleClone = rippleSource;
     rippleClone._id = uuid.v4();
@@ -69,7 +69,7 @@ module.exports = function(app) {
   });
 
   // execute ripple
-  app.post('/execute/:ripple', function (req, res) {
+  app.post('/api/v1/execute/:ripple', function (req, res) {
     // get ripple
     var rippleName = req.params.ripple;
     var ripple = require('./ripples/' + rippleName + '.js');

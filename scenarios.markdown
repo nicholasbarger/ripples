@@ -1,5 +1,7 @@
 Example scenarios to find solutions for:
 
+*. Prototype various business processes.
+
 1. Persist data to a form.
   Needs the form template.
   Needs the users input to the form.

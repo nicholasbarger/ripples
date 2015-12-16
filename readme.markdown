@@ -1,7 +1,6 @@
 Ripples is a framework for developing software online in small increments.
 
-For each ripple, you will develop some code and then optionally call one or 
-more ripples to fire off.
+For each ripple, you will develop some code and then optionally call one or more ripples to fire off.
 
 Ripples uses node.js to execute code and json to transfer data betwen ripples.
 Ripples are coordinated through the use of message bus architecture, 

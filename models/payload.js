@@ -1,5 +1,6 @@
 module.exports = function(data, dataTimestamp, errors, availableCount, message, success) {
   return {
+
     data: data || null,
     dataTimestamp: data || null,
     errors: errors || null,
@@ -8,5 +9,6 @@ module.exports = function(data, dataTimestamp, errors, availableCount, message, 
     success: success || function() {
       return errors == null || errors.length === 0;
     }
+    
   };
 };

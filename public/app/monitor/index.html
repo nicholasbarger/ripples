@@ -1,0 +1,35 @@
+<section>
+	<h2>Recent Ripples</h2>
+
+	<!-- filter for recent ripple instances -->
+	<rip-filter data="vm.instances"></rip-filter>
+
+	<!-- display grid of instances -->
+	<rip-grid data="vm.instances as instance">
+
+		<!-- instance -->
+		<rip-column display="Instance">
+			{{ instance.display }}
+		</rip-column>
+		
+		<!-- started -->
+		<rip-column display="Started">
+			{{ instance.started | date }}
+		</rip-column>
+		
+		<!-- ended -->
+		<rip-column display="Ended">
+			{{ instance.ended }}
+		</rip-column>
+		
+		<!-- runtime -->
+		<rip-column display="Run time">
+			{{ instance.runtime }}
+		</rip-column>
+		
+		<!-- status -->
+		<rip-column display="Status">
+			<rip-status status="instance.status"></rip-status>
+		</rip-column>
+	</rip-grid>
+</section>
