@@ -1,71 +1,58 @@
+// libraries
 var uuid = require('node-uuid');
 
+// models
 var Payload = require('../models/payload.js');
 var Ripple = require('../models/ripple.js');
+
+// logic
+var rippleLogic = require('../logic/ripple-logic.js');
 
 module.exports = function(app) {
   // get a list of ripples
   app.get('/api/v1/ripples', function (req, res) {
     
-    var db = req.db;
-    var collection = db.get('ripples');
-    collection.find({}, function(e, data) {
-      var payload = new Payload(data);
-      console.log(payload);
-      res.json(payload);
-    });
+    rippleLogic.many(req.params.filter, function(payload) {
+      respond(payload, req.query.envelope, res);
+    });  
     
   });
 
-  // get a specific ripple by _id
+  // get a new ripple model
+  app.get('/api/v1/ripples/new', function (req, res) {
+
+    var payload = new Payload(new Ripple());
+    respond(payload, req.query.envelope, res);
+
+  });
+
+  // get a specific ripple by id
   app.get('/api/v1/ripples/:id', function (req, res) {
     
-    var db = req.db;
-    var collection = db.get('ripples');
-    collection.findOne(req.params.id, function(e, data) {
-      var payload = new Payload(data);
-      res.json(payload);
-    });
+    console.log(req.params.id);
+    rippleLogic.single(req.params.id, function(payload) {
+        respond(payload, req.query.envelope, res);
+    }); 
     
   });
 
-  // save changes to a specific ripple by _id
+  // save changes to a specific ripple by id
   app.post('/api/v1/ripples/:id', function (req, res) {
     
-    var payload = new Payload();
-    var db = req.db;
-    var collection = db.get('ripples');
-    collection.update(
-        { _id: req.params.id }, { $set: {
-          'name': req.body.name,
-          'description': req.body.description,
-          'code': req.body.code,
-          'sampleInput': req.body.sampleInput,
-          'sampleOutput': req.body.sampleOutput
-        }},
-        function(err, data) {
-        if(err) {
-          payload.data = null;
-          payload.errors.push(new Error('Update failed', 'Problem updating record in database.'));
-          payload.message = 'Problem updating record in database.';
-        }
-        else {
-          // todo: check to ensure data is the full returned record
-          payload.data = data;
-        }
-          
-        res.send(payload);
-    });
+    console.log(req.body);
+    rippleLogic.save(req.params.id, req.body, function(payload) {
+      respond(payload, req.query.envelope, res);
+    }); 
     
   });
 
   // clone an existing ripple (must be public or owned by requesting user)
   app.post('/api/v1/ripples/:id/clone', function(req, res) {
-    var rippleSource = getRipple(req.params.id);
-    var rippleClone = rippleSource;
-    rippleClone._id = uuid.v4();
-    var payload = new Payload(rippleClone, new Date());
-    return payload;
+    
+    rippleLogic.clone(req.params.id, function(payload) {
+      respond(payload, req.query.envelope, res);
+    });
+
   });
 
   // execute ripple
@@ -88,3 +75,17 @@ module.exports = function(app) {
     res.json(output);
   });
 };
+
+function respond(payload, envelope, res) {
+  if(payload.success) {
+    if(envelope) {
+      res.json(payload);
+    } else {
+      res.json(payload.data);
+    }
+    
+  } else {
+    // todo: throw error
+    res.json('error');
+  }
+}

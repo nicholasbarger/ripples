@@ -6,6 +6,15 @@
 			.controller('IndexController', function(indexService) {
 				var vm = this;
 				vm.filter = indexService.filter;
-				vm.ripples = indexService.load(vm.filter);
+				vm.ripples = [];
+
+				activate();
+
+				function activate() {
+					// load data
+					indexService.load(vm.filter).then(function(data) {
+						vm.ripples = data;
+					});
+				}
 			});
 })();

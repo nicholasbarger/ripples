@@ -19,7 +19,7 @@
 				}
 
 				function save(ripple) {
-					return rippleApi.call('post', '/ripples', ripple);
+					return rippleApi.call('post', '/ripples/' + ripple.id, ripple);
 				}
 			});
 })();

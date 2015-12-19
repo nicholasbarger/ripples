@@ -2,13 +2,36 @@
 	<h2>Active Ripples</h2>
 
 	<!-- add new ripple -->
-	<a href="create" class="button"><i class="fa fa-plus"></i> Add</a>
+	<a href="#/ide/create" class="button"><i class="fa fa-plus"></i> Add</a>
 
 	<!-- filter ripples -->
-	<rip-filter data="vm.ripples"></rip-filter>
+	<rip-filter data="vm.filter"></rip-filter>
 
-	<!-- display grid of ripples -->
-	<rip-grid data="vm.ripples">
+	<!-- todo: display grid of ripples (replace below) -->
+	<!-- <rip-grid data="vm.ripples"> -->
 		<!-- todo: transcluded data should be in here, more directives? -->
-	</rip-grid>
+	<!-- </rip-grid> -->
+	<table>
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Version</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="ripple in vm.ripples">
+				<td><a href="#/ide/detail/{{ripple.id}}">{{ ripple.display }}</a></td>
+				<td>{{ ripple.version }}</td>
+				<td><!-- todo: add action context menu here --></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">
+					<!-- todo: add pager here -->
+				</td>
+			</tr>
+		</tfoot>
+	</table>
 </section>

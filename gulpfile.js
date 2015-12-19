@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var annotate = require('gulp-ng-annotate');
 var concat = require('gulp-concat');
 var jshint = require('gulp-jshint');
+var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
@@ -22,9 +23,11 @@ gulp.task('app-js', function() {
   return gulp.src(jsfiles)
   	.pipe(jshint())
   	.pipe(jshint.reporter('jshint-stylish'))
+    .pipe(sourcemaps.init())
   	.pipe(annotate())
     .pipe(uglify())
     .pipe(concat('build.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/app/'));
 });
 

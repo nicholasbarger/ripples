@@ -5,7 +5,8 @@
 		.module('app.ide')
 			.controller('CreateController', function(createService, ripple) {
 				var vm = this;
-				vm.cancel = createService.cancel();
-				vm.submit = createService.save();
+				vm.cancel = createService.cancel;
+				vm.ripple = ripple;
+				vm.submit = createService.save;
 			});
 })();

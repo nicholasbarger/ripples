@@ -1,0 +1,13 @@
+header.layout {
+	padding: 30px;
+	border-bottom: 2px solid #ccc;
+}
+
+.container + .layout {
+	padding: 30px;
+}
+
+footer.layout {
+	padding: 30px;
+	border-top: 1px solid #ccc;
+}

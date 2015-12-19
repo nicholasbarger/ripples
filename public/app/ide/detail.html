@@ -1,22 +1,22 @@
 <form ng-submit="save()">
 	<!-- display -->
-	<rip-control type="text" name="display" label="Display" ng-model="vm.ripple.display" placeholder="New Ripple" readonly></rip-control>
+	<rip-input type="text" name="display" label="Display" ng-model="vm.ripple.display" placeholder="New Ripple" readonly></rip-input>
 
 	<!-- description -->
-	<rip-control type="textarea" name="description" label="Description" ng-model="vm.ripple.description" placeholder="Enter a description" readonly></rip-control>
+	<rip-input type="textarea" name="description" label="Description" ng-model="vm.ripple.description" placeholder="Enter a description" readonly></rip-input>
 
 	<!-- version -->
-	<rip-control type="number" name="version" label="Version" ng-model="vm.ripple.number" placeholder="1.0" readonly></rip-control>
+	<rip-input type="number" name="version" label="Version" ng-model="vm.ripple.number" placeholder="1.0" readonly></rip-input>
 
 	<!-- sample input -->
-	<rip-control type="json" name="sampleInput" label="Sample Input" ng-model="vm.ripple.sampleInput" placeholder="<a href='http://www.json.org'>Read about JSON format</a>" readonly></rip-control>
+	<rip-input type="json" name="sampleInput" label="Sample Input" ng-model="vm.ripple.sampleInput" placeholder="<a href='http://www.json.org'>Read about JSON format</a>" readonly></rip-input>
 
 	<!-- code -->
-	<rip-control type="code" name="code" label="Code" ng-model="vm.ripple.code" placeholder="console.log('Hello ripples');" ng-change="incrementVersion(vm.ripple.version)" readonly></rip-control>
+	<rip-input type="code" name="code" label="Code" ng-model="vm.ripple.code" placeholder="console.log('Hello ripples');" ng-change="incrementVersion(vm.ripple.version)" readonly></rip-input>
 
 	<!-- sample output -->
-	<rip-control type="json" name="sampleOutput" label="Sample Output" ng-model="vm.ripple.sampleOutput" placeholder="<a href='http://www.json.org'>Read about JSON format</a>" readonly></rip-control>
+	<rip-input type="json" name="sampleOutput" label="Sample Output" ng-model="vm.ripple.sampleOutput" placeholder="<a href='http://www.json.org'>Read about JSON format</a>" readonly></rip-input>
 
 	<!-- buttons -->
-	<button type="button" ng-click="done()">Done</button>
+	<button type="submit">Done</button>
 </form>

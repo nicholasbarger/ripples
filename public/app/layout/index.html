@@ -5,10 +5,11 @@
 		<!-- todo: google analytics here -->
 
 		<!-- todo: add css -->
+		<link rel="stylesheet" type="text/css" href="/app/layout/styles/layout.css"/>
 	</head>
 	<body>
 		<!-- title and navigation -->
-		<header>
+		<header class="layout">
 			<h1>Ripples</h1>
 			<nav>
 				<ul>
@@ -20,12 +21,12 @@
 		</header>
 
 		<!-- main content for each route -->
-		<div class="content">
+		<div class="container layout">
 			<ng-view></ng-view>
 		</div>
 
 		<!-- lesser links -->
-		<footer>
+		<footer class="layout">
 			<ul>
 				<li><a href="contact">Contact Ripples</a></li>
 				<li><a href="agreement">Usage Agreement</a></li>

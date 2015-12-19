@@ -2,7 +2,7 @@
   <label for="{{name.toLower()}}">{{label}}</label>
   
   <!-- text -->
-  <input type="text" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='text'">
+  <input type="text" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-model="ngModel" ng-if="type==='text'">
 
   <!-- textarea -->
   <textarea id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" rows="5" ng-if="type==='textarea'"></textarea>
@@ -18,6 +18,9 @@
   
   <!-- checkbox -->
   <input type="checkbox" id="{{name}}" name="{{name}}" ng-if="type==='checkbox'">
+
+  <!-- number -->
+  <input type="number" id="{{name}}" name="{{name}}" ng-if="type==='number'">
   
   <!-- checkboxlist -->
   <p class="todo" ng-if="type==='checkboxlist'">checkboxlist</p>

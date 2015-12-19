@@ -1,19 +1,25 @@
 var uuid = require('node-uuid');
 
-module.exports = function(_id) {
+module.exports = function(id, rippleId) {
 	return {
 
 		// the unique id of this ripple instance
-		_id: _id || uuid.v4(),
+		id: id || uuid.v4(),
+
+		// when the instance finished running
+		end: null,
 
 	    // the input received to execute this ripple instance
-	    input,
-
-	    // the unique id of the ripple defining this code execution
-	    rippleId,
+	    input: null,
 
 	    // the generated output for this ripple instance
-	    output,
+	    output: null,
+
+	    // the unique id of the ripple defining this code execution
+	    rippleId: null,
+
+	    // when the instance began running (started datetime)
+	    start: new Date(),
 
 	    // the version of the ripple this ripple instance executed
 	    version: 1

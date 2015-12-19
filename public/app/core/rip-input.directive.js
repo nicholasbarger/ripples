@@ -15,7 +15,7 @@
             name: '@',
 
             // todo: the model to bind to (special attribute in angular)
-            ngModel: '@',
+            ngModel: '=',
 
             // a default placeholder text to show
             placeholder: '@',
@@ -27,6 +27,7 @@
             type: '@'
 
           },
+          require: 'ngModel',
           templateUrl: 'core/rip-input.directive.tmpl.html',
           controllerAs: 'ripInputController',
           controller: function() {

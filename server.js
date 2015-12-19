@@ -5,17 +5,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-// database
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/ripples');
-
-// make db accessible to our router
-app.use(function(req,res,next){
-    req.db = db;
-    next();
-});
-
 // middleware
 app.use(bodyParser());
 app.use(express.static(__dirname + '/public'));
