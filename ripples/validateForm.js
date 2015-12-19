@@ -1,4 +1,4 @@
-module.exports = function(input) {
+module.exports = function(input, cb) {
   var errors = [];
   var isValid = false;
   
@@ -30,5 +30,5 @@ module.exports = function(input) {
     errors: errors
   }
   
-  return output;
+  cb(output);
 };

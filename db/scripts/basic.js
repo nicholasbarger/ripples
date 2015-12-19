@@ -13,16 +13,23 @@ db.templates.find();
 db.ripples.insert({
 	"id": "a3451ac3-3742-41c7-a865-0b025e22f63b",
 	"display": "Say Hello",
-	"code": "console.log('Hello');",
+	"code": "console.log('Hello'); cb();",
 	"description": "Writes Hello to the console.",
 	"ripples": [{
-		"_id": "35e9f4c1-677d-4fc7-bfe7-97252c479d26",
-		"display": "Say Ripple",
-		"code": "console.log('Ripple');",
-		"description": "Writes Ripple to the console.",
-		"ripples": [],
+		"id": "35e9f4c1-677d-4fc7-bfe7-97252c479d26",
 		"version": "1"	
 	}],
+	"sampleInput": null,
+	"sampleOutput": null,
+	"version": "1"
+});
+
+db.ripples.insert({
+	"id": "35e9f4c1-677d-4fc7-bfe7-97252c479d26",
+	"display": "Say Ripple",
+	"code": "console.log('Ripple');  cb();",
+	"description": "Writes Ripple to the console.",
+	"ripples": [],
 	"sampleInput": null,
 	"sampleOutput": null,
 	"version": "1"
@@ -32,7 +39,7 @@ db.ripples.insert({
 db.ripples.remove({ id: "a3451ac3-3742-41c7-a865-0b025e22f63b" });
 
 // insert ripple instance
-db.ripples.insert({
+db.rippleInstances.insert({
 	"id": "",
 	"end": "Thu Dec 17 2015 22:26:02 GMT-0600 (CST)",
 	"input": null,

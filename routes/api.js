@@ -29,7 +29,6 @@ module.exports = function(app) {
   // get a specific ripple by id
   app.get('/api/v1/ripples/:id', function (req, res) {
     
-    console.log(req.params.id);
     rippleLogic.single(req.params.id, function(payload) {
         respond(payload, req.query.envelope, res);
     }); 
@@ -39,7 +38,6 @@ module.exports = function(app) {
   // save changes to a specific ripple by id
   app.post('/api/v1/ripples/:id', function (req, res) {
     
-    console.log(req.body);
     rippleLogic.save(req.params.id, req.body, function(payload) {
       respond(payload, req.query.envelope, res);
     }); 
@@ -56,23 +54,12 @@ module.exports = function(app) {
   });
 
   // execute ripple
-  app.post('/api/v1/execute/:ripple', function (req, res) {
-    // get ripple
-    var rippleName = req.params.ripple;
-    var ripple = require('./ripples/' + rippleName + '.js');
-    // throw 404 error if not found
-    if (ripple == null) {
-        res.send(404, { error: 'Ripple was not found.' });
-    }
+  app.post('/api/v1/execute/:id', function (req, res) {
+    
+    rippleLogic.execute(req.params.id, req.body, function(payload) {
+      respond(payload, req.query.envelope, res);
+    });
 
-    // get input
-    var input = req.body.input;
-
-    // execute ripple
-    var output = ripple(input);
-
-    // return results
-    res.json(output);
   });
 };
 

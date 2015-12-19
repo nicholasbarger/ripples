@@ -8,8 +8,10 @@ var Payload = require('../models/payload.js');
 
 module.exports = {
     clone: clone,
+    execute: execute,
 	many: many,
-	save: save
+	save: save,
+    single: single
 }
 
 function clone(id, cb) {
@@ -17,7 +19,7 @@ function clone(id, cb) {
     var rippleClone = rippleSource;
     var payload = new Payload();
 
-    rippleLogic.single(id, function(lookupPayload) {
+    single(id, function(lookupPayload) {
       if(lookupPayload.success) {
         rippleSource = lookupPayload.data;
         rippleClone = rippleSource.clone();
@@ -26,6 +28,44 @@ function clone(id, cb) {
         payload.data = rippleClone;
         cb(payload);
       }
+    });
+}
+
+function execute(id, input) {
+    var payload = new Payload();
+    var ripple;
+    var run;
+    var i = 0;
+
+    // get ripple
+    single(id, function(payload) {
+        ripple = payload.data;
+
+        if(payload.success) {
+
+            // the infamous, dangerous, and misunderstood eval()
+            run = new Function('input', 'cb', payload.data.code);
+
+            // execute ripple
+            run(input, function(output) {
+
+                // look for next ripples to execute
+                if(ripple.ripples && ripple.ripples.length > 0) {
+                    for(i = 0; i < ripple.ripples.length; i++) {
+
+                        // pass the output from the parent ripple as input
+                        // to the next wave of ripples
+                        execute(ripple.ripples[i].id, output);
+                    }
+                }
+            });
+
+            payload.data = new Date();
+            return payload;
+
+        } else {
+            // handle error/notfound
+        }
     });
 }
 
@@ -41,8 +81,6 @@ function many(filter, cb) {
     		cb(payload);
     	}
     });
-
-    return;
 } 
 
 function save(id, ripple, cb) {
@@ -76,6 +114,4 @@ function single(id, cb) {
     		cb(payload);
     	}
     });
-
-    return;
 }
