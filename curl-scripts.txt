@@ -1,0 +1,24 @@
+-- get a single ripple
+curl http://localhost:8080/api/v1/ripples/a3451ac3-3742-41c7-a865-0b025e22f63b
+
+-- get all ripples
+curl http://localhost:8080/api/v1/ripples
+
+-- get filtered ripples
+curl http://localhost:8080/api/v1/ripples -- todo
+
+-- save ripple (create or update)
+curl -H "Content-Type: application/json" -X POST -d '{"id": "a3451ac3-3742-41c7-a865-0b025e22f63b",
+	"display": "Say Hello",
+	"code": "console.log('Hello'); cb();",
+	"description": "Writes Hello to the console.",
+	"ripples": [{
+		"id": "35e9f4c1-677d-4fc7-bfe7-97252c479d26",
+		"version": "1"	
+	}],
+	"sampleInput": null,
+	"sampleOutput": null,
+	"version": "1"}' http://localhost:8080/api/v1/ripples/a3451ac3-3742-41c7-a865-0b025e22f63b
+
+-- execute the sample ripple
+curl -H "Content-Type: application/json" -X POST -d '{}' http://localhost:8080/api/v1/execute/a3451ac3-3742-41c7-a865-0b025e22f63b

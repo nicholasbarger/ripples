@@ -14,7 +14,7 @@ module.exports = function(app) {
     
     rippleLogic.many(req.params.filter, function(payload) {
       respond(payload, req.query.envelope, res);
-    });  
+    });
     
   });
 
@@ -56,9 +56,10 @@ module.exports = function(app) {
   // execute ripple
   app.post('/api/v1/execute/:id', function (req, res) {
     
-    rippleLogic.execute(req.params.id, req.body, function(payload) {
-      respond(payload, req.query.envelope, res);
-    });
+    var payload = rippleLogic.execute(req.params.id, req.body);
+
+    // todo: rewrite this response
+    res.json('Ripple started');
 
   });
 };

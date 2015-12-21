@@ -1,10 +1,16 @@
 // database
+var config = require('../config.js');
+console.log('CONFIG', config);
 var mongo = require('mongodb');
 var monk = require('monk');
-var db = monk('localhost:27017/ripples');
+var db = monk(config.db);
 
 // models
+var Instance = require('../models/instance.js');
 var Payload = require('../models/payload.js');
+
+// references
+var instanceLogic = require('./instance-logic.js');
 
 module.exports = {
     clone: clone,
@@ -31,11 +37,12 @@ function clone(id, cb) {
     });
 }
 
-function execute(id, input) {
-    var payload = new Payload();
-    var ripple;
-    var run;
-    var i = 0;
+function execute(id, input, originalInstanceId) {
+    var i = 0,
+        instance,
+        payload = new Payload(),
+        ripple,
+        run;
 
     // get ripple
     single(id, function(payload) {
@@ -43,11 +50,31 @@ function execute(id, input) {
 
         if(payload.success) {
 
-            // the infamous, dangerous, and misunderstood eval()
+            // create function from code
             run = new Function('input', 'cb', payload.data.code);
+
+            // create instance (undefined to get new id through constructor)
+            instance = new Instance(undefined, ripple.id);
+            instance.input = input;
+            instance.originalInstanceId = originalInstanceId || null;
+            instance.version = ripple.version;
+
+            // save instance
+            instanceLogic.save(instance.id, instance, function(payload) {
+                // todo: should we do something here?
+            });
 
             // execute ripple
             run(input, function(output) {
+
+                // update instance
+                instance.output = output;
+                instance.end = new Date();
+
+                // save instance
+                instanceLogic.save(instance.id, instance, function(payload) {
+                    // todo: should we do something here?
+                });
 
                 // look for next ripples to execute
                 if(ripple.ripples && ripple.ripples.length > 0) {
@@ -55,7 +82,7 @@ function execute(id, input) {
 
                         // pass the output from the parent ripple as input
                         // to the next wave of ripples
-                        execute(ripple.ripples[i].id, output);
+                        execute(ripple.ripples[i].id, output, ripple.id);
                     }
                 }
             });
@@ -64,7 +91,7 @@ function execute(id, input) {
             return payload;
 
         } else {
-            // handle error/notfound
+            // todo: handle error/notfound
         }
     });
 }
@@ -75,7 +102,7 @@ function many(filter, cb) {
 	var collection = db.get('ripples');
     collection.find({}, function(e, data) {
     	if(e) {
-    		// handle error
+    		// todo: handle error
     	} else {
     		payload.data = data;
     		cb(payload);
@@ -107,7 +134,7 @@ function single(id, cb) {
     var collection = db.get('ripples');
     collection.findOne({ id: id }, function(e, data) {
     	if(e) {
-    		// handle error
+    		// todo: handle error
     		console.log(e);
     	} else {
 			payload.data = data;

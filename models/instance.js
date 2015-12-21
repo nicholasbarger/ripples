@@ -12,6 +12,9 @@ module.exports = function(id, rippleId) {
 	    // the input received to execute this ripple instance
 	    input: null,
 
+	    // the original instance that started the entire chain
+	    originalInstanceId: null,
+
 	    // the generated output for this ripple instance
 	    output: null,
 
