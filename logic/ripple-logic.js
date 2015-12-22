@@ -54,10 +54,9 @@ function execute(id, input, originalInstanceId) {
             run = new Function('input', 'cb', payload.data.code);
 
             // create instance (undefined to get new id through constructor)
-            instance = new Instance(undefined, ripple.id);
+            instance = new Instance(undefined, ripple);
             instance.input = input;
             instance.originalInstanceId = originalInstanceId || null;
-            instance.version = ripple.version;
 
             // save instance
             instanceLogic.save(instance.id, instance, function(payload) {

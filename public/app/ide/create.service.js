@@ -3,7 +3,7 @@
 	
 	angular
 		.module('app.ide')
-			.factory('createService', function($window, rippleApi) {
+			.factory('rippleCreateService', function($window, rippleApi) {
 				return {
 					cancel: cancel,
 					newRipple: newRipple,

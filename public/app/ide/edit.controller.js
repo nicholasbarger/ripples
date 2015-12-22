@@ -3,9 +3,9 @@
 	
 	angular
 		.module('app.ide')
-			.controller('EditController', function(editService, ripple) {
+			.controller('RippleEditController', function(rippleEditService, ripple) {
 				var vm = this;
-				vm.incrementVersion = editService.incrementVersion;
-				vm.save = editService.save;
+				vm.incrementVersion = rippleEditService.incrementVersion;
+				vm.save = rippleEditService.save;
 			});
 })();

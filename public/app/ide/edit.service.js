@@ -3,7 +3,7 @@
 	
 	angular
 		.module('app.ide')
-			.factory('editService', function(rippleApi) {
+			.factory('rippleEditService', function(rippleApi) {
 				return {
 					disable: disable,
 					incrementVersion: incrementVersion,

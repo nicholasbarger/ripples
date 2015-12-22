@@ -3,7 +3,8 @@
 
 	angular
 		.module('app.ide')
-			.factory('indexService', function(rippleApi) {
+			.factory('ideIndexService', function(rippleApi) {
+				console.log('started index service for ide');
 				return {
 					filter: {},
 					load: load

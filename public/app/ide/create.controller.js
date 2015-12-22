@@ -3,10 +3,10 @@
 	
 	angular
 		.module('app.ide')
-			.controller('CreateController', function(createService, ripple) {
+			.controller('RippleCreateController', function(rippleCreateService, ripple) {
 				var vm = this;
-				vm.cancel = createService.cancel;
+				vm.cancel = rippleCreateService.cancel;
 				vm.ripple = ripple;
-				vm.submit = createService.save;
+				vm.submit = rippleCreateService.save;
 			});
 })();

@@ -17,7 +17,7 @@ module.exports = {
 function many(filter, cb) {
 	// todo: handle filter criteria
     var payload = new Payload();
-	var collection = db.get('ripples');
+	var collection = db.get('instances');
     collection.find({}, function(e, data) {
     	if(e) {
     		// todo: handle error

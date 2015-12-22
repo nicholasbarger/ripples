@@ -5,31 +5,62 @@
 	<rip-filter data="vm.instances"></rip-filter>
 
 	<!-- display grid of instances -->
-	<rip-grid data="vm.instances as instance">
+	<!-- <rip-grid data="vm.instances as instance"> -->
 
 		<!-- instance -->
-		<rip-column display="Instance">
+		<!-- <rip-column display="Instance">
 			{{ instance.display }}
-		</rip-column>
+		</rip-column> -->
 		
 		<!-- started -->
-		<rip-column display="Started">
+		<!-- <rip-column display="Started">
 			{{ instance.started | date }}
-		</rip-column>
+		</rip-column> -->
 		
 		<!-- ended -->
-		<rip-column display="Ended">
+		<!-- <rip-column display="Ended">
 			{{ instance.ended }}
-		</rip-column>
+		</rip-column> -->
 		
 		<!-- runtime -->
-		<rip-column display="Run time">
+		<!-- <rip-column display="Run time">
 			{{ instance.runtime }}
-		</rip-column>
+		</rip-column> -->
 		
 		<!-- status -->
-		<rip-column display="Status">
+		<!-- <rip-column display="Status">
 			<rip-status status="instance.status"></rip-status>
-		</rip-column>
-	</rip-grid>
+		</rip-column> -->
+	<!-- </rip-grid> -->
+
+	<table>
+		<thead>
+			<tr>
+				<th>Instance</th>
+				<th>Version</th>
+				<th>Started</th>
+				<th>Ended</th>
+				<th>Run Time</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="instance in vm.instances">
+				<td><a href="#/monitor/instances/{{instance.id}}">{{ instance.ripple.display }}</a></td>
+				<td>{{ instance.ripple.version }}</td>
+				<td>{{ instance.start }}</td>
+				<td>{{ instance.end }}</td>
+				<td>{{ instance.runTime }}</td>
+				<td><!-- todo: add action context menu here --></td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">
+					<!-- todo: add pager here -->
+				</td>
+			</tr>
+		</tfoot>
+	</table>
 </section>
+
+<pre>{{ vm.instances | json }}</pre>

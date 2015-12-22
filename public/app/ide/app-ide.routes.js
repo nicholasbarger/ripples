@@ -9,46 +9,46 @@
 		$routeProvider
 			.when('/ide', {
 				templateUrl: 'ide/index.html',
-				controller: 'IndexController',
+				controller: 'IdeIndexController',
 				controllerAs: 'vm'
 			})
 			.when('/ide/create', {
 				templateUrl: 'ide/create.html',
-				controller: 'CreateController',
+				controller: 'RippleCreateController',
 				controllerAs: 'vm',
 				resolve: {
-					ripple: function(createService) {
-						return createService.newRipple();
+					ripple: function(rippleCreateService) {
+						return rippleCreateService.newRipple();
 					}
 				}
 			})
 			.when('/ide/detail/:id', {
 				templateUrl: 'ide/detail.html',
-				controller: 'DetailController',
+				controller: 'RippleDetailController',
 				controllerAs: 'vm',
 				resolve: {
-					ripple: function(editService) {
-						return editService.ripple;
+					ripple: function(rippleEditService) {
+						return rippleEditService.ripple;
 					}
 				}
 			})
 			.when('/ide/disable/:id', {
 				templateUrl: 'ide/disable.html',
-				controller: 'DisableController',
+				controller: 'RippleDisableController',
 				controllerAs: 'vm',
 				resolve: {
-					ripple: function(editService) {
-						return editService.ripple;
+					ripple: function(rippleEditService) {
+						return rippleEditService.ripple;
 					}
 				}
 			})
 			.when('/ide/edit/:id', {
 				templateUrl: 'ide/edit.html',
-				controller: 'EditController',
+				controller: 'RippleEditController',
 				controllerAs: 'vm',
 				resolve: {
-					ripple: function(editService) {
-						return editService.ripple;
+					ripple: function(rippleEditService) {
+						return rippleEditService.ripple;
 					}
 				}
 			});
