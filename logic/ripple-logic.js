@@ -96,10 +96,13 @@ function execute(id, input, originalInstanceId) {
 }
 
 function many(filter, cb) {
-	// todo: handle filter criteria
+	if(!filter) {
+        filter = {};
+    }
+
     var payload = new Payload();
 	var collection = db.get('ripples');
-    collection.find({}, function(e, data) {
+    collection.find(filter, function(e, data) {
     	if(e) {
     		// todo: handle error
     	} else {

@@ -15,10 +15,14 @@ module.exports = {
 }
 
 function many(filter, cb) {
-	// todo: handle filter criteria
+    // todo: enforce the right tenant
+    if(!filter) {
+        filter = {};
+    }
+	
     var payload = new Payload();
 	var collection = db.get('instances');
-    collection.find({}, function(e, data) {
+    collection.find(filter, function(e, data) {
     	if(e) {
     		// todo: handle error
     	} else {
