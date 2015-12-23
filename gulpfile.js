@@ -6,7 +6,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
-var cssfiles = 'public/app/**.scss';
+var cssfiles = 'public/app/layout/styles/*.css';
 var htmlfiles = 'public/app/**.html';
 var jsfiles = [
   'public/app/core/app-core.module.js',
@@ -31,6 +31,12 @@ gulp.task('app-js', function() {
     .pipe(gulp.dest('public/app/'));
 });
 
+gulp.task('app-css', function() {
+  return gulp.src(cssfiles)
+    .pipe(concat('build.css'))
+    .pipe(gulp.dest('public/app/'));
+});
+
 gulp.task('vendor-js', function() {
   var path = 'public/app/bower_components/';
   return gulp.src([
@@ -44,10 +50,10 @@ gulp.task('vendor-js', function() {
     .pipe(gulp.dest('public/app/'));
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', ['vendor-js', 'app-js', 'app-css'], function () {
     return gulp.watch(
     	['public/**/*.*', '!public/app/build.js', '!public/app/vendor.js'], 
     	['app-js']);
 });
 
-gulp.task('default', ['vendor-js', 'app-js', 'watch']);
+gulp.task('default', ['watch']);
