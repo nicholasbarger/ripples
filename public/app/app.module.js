@@ -2,5 +2,5 @@
 	'use strict';
 
 	angular
-  		.module('app', ['app.ide', 'app.monitor']);
+  		.module('app', ['app.auth', 'app.ide', 'app.monitor']);
 })();
