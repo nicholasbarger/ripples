@@ -4,9 +4,8 @@
 		<!-- todo: add meta tags -->
 		<!-- todo: google analytics here -->
 
-		<!-- todo: add css -->
-		<link rel="stylesheet" type="text/css" href="/app/layout/styles/layout.css"/>
-		<link rel="stylesheet" type="text/css" href="/app/layout/styles/code.css"/>
+		<!-- css -->
+		<link rel="stylesheet" type="text/css" href="/app/build.css"/>
 	</head>
 	<body>
 		<!-- title and navigation -->
@@ -28,13 +27,15 @@
 
 		<!-- lesser links -->
 		<footer class="layout">
-			<ul>
-				<li><a href="contact">Contact Ripples</a></li>
-				<li><a href="agreement">Usage Agreement</a></li>
-			</ul>
+			<nav>
+				<ul>
+					<li><a href="#/contact">Contact Ripples</a></li>
+					<li><a href="#/agreement">Usage Agreement</a></li>
+				</ul>
+			</nav>
 		</footer>
 
-		<!-- todo: need gulp to build js files, or perhaps review webpack -->
+		<!-- javascript -->
 		<script type="text/javascript" src="../app/vendor.js"></script>
 		<script type="text/javascript" src="../app/build.js"></script>
 	</body>

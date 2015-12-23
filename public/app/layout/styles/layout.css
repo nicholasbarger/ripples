@@ -1,13 +1,44 @@
+body {
+	margin: 0px;
+	padding: 0px;
+}
 header.layout {
-	padding: 30px;
-	border-bottom: 2px solid #ccc;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	background-color: cornflowerblue;
+	border-bottom: 1px solid #ccc;
 }
 
-.container + .layout {
-	padding: 30px;
+header.layout nav {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+header.layout nav li {
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 footer.layout {
-	padding: 30px;
+	position: relative;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
 	border-top: 1px solid #ccc;
+}
+footer.layout nav {
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background-color: red;
+}
+footer.layout nav li {
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
 }

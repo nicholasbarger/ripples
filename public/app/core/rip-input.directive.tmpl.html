@@ -1,12 +1,12 @@
 <div class="form-control">
   <label for="{{name.toLower()}}">{{label}}</label>
   
-  <!-- text -->
-  <input type="text" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-model="ngModel" ng-if="type==='text'">
+  <!-- checkbox -->
+  <input type="checkbox" id="{{name}}" name="{{name}}" ng-if="type==='checkbox'">
 
-  <!-- textarea -->
-  <textarea id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" rows="5" ng-if="type==='textarea'"></textarea>
-  
+  <!-- checkboxlist -->
+  <p class="todo" ng-if="type==='checkboxlist'">checkboxlist</p>
+
   <!-- date -->
   <input type="date" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='date'">
   
@@ -14,21 +14,27 @@
   <input type="datetime" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='datetime'">
   
   <!-- dropdown -->
-  <select id="{{name}}" name="{{name}}" ng-if="type==='dropdown'"></select>
-  
-  <!-- checkbox -->
-  <input type="checkbox" id="{{name}}" name="{{name}}" ng-if="type==='checkbox'">
+  <select id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='dropdown'"></select>
+
+  <!-- email address -->
+  <input type="email" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='email'">
+
+  <!-- fileupload -->
+  <p class="todo" ng-if="type==='fileupload'">fileupload</p>
 
   <!-- number -->
-  <input type="number" id="{{name}}" name="{{name}}" ng-if="type==='number'">
-  
-  <!-- checkboxlist -->
-  <p class="todo" ng-if="type==='checkboxlist'">checkboxlist</p>
+  <input type="number" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='number'">
+
+  <!-- password -->
+  <input type="password" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-if="type==='password'">
   
   <!-- radiobuttongroup -->
   <p class="todo" ng-if="type==='radiobuttongroup'">radiobuttongroup</p>
-  
-  <!-- fileupload -->
-  <p class="todo" ng-if="type==='fileupload'">fileupload</p>
+
+  <!-- text -->
+  <input type="text" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-model="ngModel" ng-if="type==='text'">
+
+  <!-- textarea -->
+  <textarea id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" rows="5" ng-if="type==='textarea'"></textarea>
   
 </div>

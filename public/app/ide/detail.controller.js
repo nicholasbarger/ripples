@@ -4,6 +4,8 @@
 	angular
 		.module('app.ide')
 			.controller('RippleDetailController', function(ripple) {
-				// todo: not sure what to do once the ripple is resolved
+				console.log('RippleDetailController here', ripple);
+				var vm = this;
+				vm.ripple = ripple;
 			});
 })();

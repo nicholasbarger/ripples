@@ -27,8 +27,8 @@
 				controller: 'RippleDetailController',
 				controllerAs: 'vm',
 				resolve: {
-					ripple: function(rippleEditService) {
-						return rippleEditService.ripple;
+					ripple: function($route, rippleEditService) {
+						return rippleEditService.load($route.current.params.id);
 					}
 				}
 			})
