@@ -3,3 +3,6 @@ db/logs/
 node_modules/
 .idea/
 *.log
+public/app/build.css
+public/app/build.js
+public/app/vendor.js
