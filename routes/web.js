@@ -8,4 +8,12 @@ module.exports = function(app) {
   app.get('/app', function (req, res) {
     res.sendfile('public/app/layout/index.html');
   });
+
+  app.get('/error', function (req, res) {
+  	// todo: add error page
+  });
+
+  app.get('/not-found', function (req, res) {
+  	// todo: add not-found page
+  });
 };
