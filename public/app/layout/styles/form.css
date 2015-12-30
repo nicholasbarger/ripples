@@ -1,0 +1,31 @@
+form label, form input, form textarea, form select {
+    display: block;
+    margin-bottom: 10px;
+}
+
+form label {
+    font-size: 10pt;
+}
+
+form input, form textarea, form select {
+    padding: 10px;
+}
+
+form.horizontal label, form.horizontal input, form.horizontal textarea, form.horizontal select {
+    display: inline-block;
+}
+
+form.horizontal button {
+    display: inline-block;
+    margin-left: 155px;
+}
+
+form.horizontal label {
+    width: 150px;
+}
+
+form .help {
+    margin-left: 150px;
+    font-size: 10pt;
+    padding: 5px;
+}

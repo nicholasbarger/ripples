@@ -53,7 +53,7 @@ gulp.task('vendor-js', function() {
 gulp.task('watch', ['vendor-js', 'app-js', 'app-css'], function () {
     return gulp.watch(
     	['public/**/*.*', '!public/app/build.js', '!public/app/vendor.js'], 
-    	['app-js']);
+    	['app-js', 'app-css']);
 });
 
 gulp.task('default', ['watch']);

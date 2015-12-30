@@ -1,0 +1,6 @@
+button, input[type=submit] {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 2px;
+}

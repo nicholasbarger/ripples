@@ -1,12 +1,14 @@
 <h2>Enter Credentials</h2>
 
-<form ng-submit="login()">
+<form ng-submit="login()" class="horizontal">
+	
 	<rip-input type="email" label="Email Address" name="email" ng-model="credentials.email" placeholder="my@email.com"></rip-input>
-
 	<rip-input type="password" label="Password" name="password" ng-model="credentials.password" placeholder="password"></rip-input>
 
 	<button type="submit">Login</button>
-
-	<a href="#/signup">Signup</a>
-	<a href="#/forgot-password">Forgot password</a>
+	<div class="help">
+		<a href="#/signup">Signup</a>
+		<a href="#/forgot-password">Forgot password</a>
+	</div>
+	
 </form>
