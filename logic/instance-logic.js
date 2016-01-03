@@ -1,12 +1,13 @@
 // database
+var _ = require('lodash');
 var config = require('../config.js');
-console.log('CONFIG', config);
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk(config.db);
 
 // models
 var Payload = require('../models/payload.js');
+var Instance = require('../models/instance.js');
 
 module.exports = {
     many: many,
@@ -21,12 +22,17 @@ function many(filter, cb) {
     }
 	
     var payload = new Payload();
+    payload.data = [];
+    
 	var collection = db.get('instances');
     collection.find(filter, function(e, data) {
     	if(e) {
     		// todo: handle error
     	} else {
-    		payload.data = data;
+            _.forEach(data, function(n) {
+                payload.data.push(new Instance(n));
+            });
+
     		cb(payload);
     	}
     });
@@ -44,7 +50,7 @@ function save(id, instance, cb) {
             }
             else {
               // todo: check to ensure data is the full returned record
-              payload.data = data;
+              payload.data = new Instance(data);
             }
               
             cb(payload);
@@ -59,7 +65,8 @@ function single(id, cb) {
     		// todo: handle error
     		console.log(e);
     	} else {
-			payload.data = data;
+			payload.data = new Instance(data);
+
     		cb(payload);
     	}
     });

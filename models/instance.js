@@ -1,33 +1,34 @@
+var moment = require('moment');
 var uuid = require('node-uuid');
 
-module.exports = function(id, ripple) {
+module.exports = function(obj) {
 	return {
 
 		// the unique id of this ripple instance
-		id: id || uuid.v4(),
+		id: obj.id || uuid.v4(),
 
 		// when the instance finished running
-		end: null,
+		end: obj.end || null,
 
 	    // the input received to execute this ripple instance
-	    input: null,
+	    input: obj.input || null,
 
 	    // the original instance that started the entire chain
-	    originalInstanceId: null,
+	    originalInstanceId: obj.originalInstanceId || null,
 
 	    // the generated output for this ripple instance
-	    output: null,
+	    output: obj.output || null,
 
 	    // the parent ripple defining this code execution
-	    ripple: ripple || null,
+	    ripple: obj.ripple || null,
 
 	    // the calculated amount of time the instance ran
 	    runtime: (function() {
-	    	this.end - this.start;
+	    	return moment(this.end).from(moment(this.start));
 	    })(),
 
 	    // when the instance began running (started datetime)
-	    start: new Date()
+	    start: obj.start || new Date()
 	    
 	};
 };
