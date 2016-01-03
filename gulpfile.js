@@ -6,7 +6,9 @@ var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
-var cssfiles = 'public/app/layout/styles/*.css';
+var cssfiles = [
+  'public/app/layout/styles/*.css'
+];
 var htmlfiles = 'public/app/**.html';
 var jsfiles = [
   'public/app/core/app-core.module.js',
@@ -41,9 +43,9 @@ gulp.task('vendor-js', function() {
   var path = 'public/app/bower_components/';
   return gulp.src([
       path + 'jquery/dist/jquery.js',
-      path + 'bootstrap/dist/js/bootstrap.js',
       path + 'angular/angular.js',
-      path + 'angular-route/angular-route.js'
+      path + 'angular-route/angular-route.js',
+      path + 'moment/min/moment-with-locales.js'
     ])
     .pipe(uglify())
     .pipe(concat('vendor.js'))

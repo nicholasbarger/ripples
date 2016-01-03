@@ -6,3 +6,4 @@ node_modules/
 public/app/build.css
 public/app/build.js
 public/app/vendor.js
+public/app/bower_components/
