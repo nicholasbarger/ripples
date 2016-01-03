@@ -27,7 +27,6 @@ module.exports = function(app) {
 
   // get a list of ripples
   app.get('/api/v1/ripples', function (req, res) {
-    console.log('getting list of ripples');
     rippleLogic.many(req.params.filter, function(payload) {
       respond(payload, req.query.envelope, res);
     });

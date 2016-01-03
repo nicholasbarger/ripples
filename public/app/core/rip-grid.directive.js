@@ -3,21 +3,21 @@
 
 	angular
 		.module('app.core')
-			.directive('rip-grid', function() {
-				return {
-					restrict: 'E',
-					scope: {
+		.directive('rip-grid', function() {
+			return {
+				restrict: 'E',
+				scope: {
 
-						// the dataset to be displayed in the grid
-						data: '@'
+					// the dataset to be displayed in the grid
+					data: '@'
 
-					},
-					templateUrl: 'rip-grid.directive.tmpl.html',
-					transclude: true,
-					controllerAs: 'ripGridController',
-					controller: function() {
-						// todo
-					}
-				};
-			});
+				},
+				templateUrl: 'rip-grid.directive.tmpl.html',
+				transclude: true,
+				controllerAs: 'ripGridController',
+				controller: function() {
+					// todo
+				}
+			};
+		});
 })();

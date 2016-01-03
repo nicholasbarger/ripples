@@ -1,5 +1,5 @@
 <section>
-	<h2>Recent Ripples</h2>
+	<h2>Recent Running Instances</h2>
 
 	<!-- filter for recent ripple instances -->
 	<rip-filter data="vm.instances"></rip-filter>
@@ -33,7 +33,7 @@
 		</rip-column> -->
 	<!-- </rip-grid> -->
 
-	<table>
+	<table class="grid">
 		<thead>
 			<tr>
 				<th>Instance</th>
@@ -47,9 +47,9 @@
 			<tr ng-repeat="instance in vm.instances">
 				<td><a href="#/monitor/instances/{{instance.id}}">{{ instance.ripple.display }}</a></td>
 				<td>{{ instance.ripple.version }}</td>
-				<td>{{ instance.start }}</td>
-				<td>{{ instance.end }}</td>
-				<td>{{ instance.runTime }}</td>
+				<td>{{ instance.start | ripDateTime }}</td>
+				<td>{{ instance.end | ripDateTime }}</td>
+				<td>{{ instance.runtime }}</td>
 				<td><!-- todo: add action context menu here --></td>
 			</tr>
 		</tbody>

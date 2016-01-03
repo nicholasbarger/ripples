@@ -1,8 +1,9 @@
 <section>
 	<h2>Active Ripples</h2>
 
-	<!-- add new ripple -->
-	<a href="#/ide/create" class="button"><i class="fa fa-plus"></i> Add</a>
+	<div class="actions">
+		<a href="#/ide/create" class="button"><i class="fa fa-plus"></i> Add</a>
+	</div>
 
 	<!-- filter ripples -->
 	<rip-filter data="vm.filter"></rip-filter>
@@ -11,7 +12,7 @@
 	<!-- <rip-grid data="vm.ripples"> -->
 		<!-- todo: transcluded data should be in here, more directives? -->
 	<!-- </rip-grid> -->
-	<table>
+	<table class="grid">
 		<thead>
 			<tr>
 				<th>Title</th>

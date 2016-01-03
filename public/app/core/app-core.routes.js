@@ -3,7 +3,7 @@
 
 	angular
 		.module('app.ide')
-			.config(config);
+		.config(config);
 
 	function config($routeProvider) {
 		$routeProvider

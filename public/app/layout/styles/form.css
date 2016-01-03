@@ -11,6 +11,11 @@ form input, form textarea, form select {
     padding: 10px;
 }
 
+form input[type='search'] + button, form input[type='search'] .button {
+    padding: 0px;
+    margin-left: -5px;
+}
+
 form.horizontal label, form.horizontal input, form.horizontal textarea, form.horizontal select {
     display: inline-block;
 }
@@ -28,4 +33,8 @@ form .help {
     margin-left: 150px;
     font-size: 10pt;
     padding: 5px;
+}
+
+form.inline label, form.inline input, form.inline select, form.inline textarea {
+    display: inline-block;
 }

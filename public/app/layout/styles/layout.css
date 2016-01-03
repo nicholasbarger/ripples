@@ -1,13 +1,23 @@
 body {
 	margin: 0px;
 	padding: 0px;
+	background-color: #f3f3f3;
 }
 header.layout {
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	border-bottom: 1px solid #ccc;
+	background-color: #262B33;
+	color: #fff;
+}
+header.layout a {
+	color: #fff;
+	text-decoration: none;
+}
+
+header h1 {
+	background-color: #009688;
+	display: inline-block;
+	line-height: 75px;
+	text-align: center;
+	width: 100px;
 }
 
 header.layout nav {
@@ -41,10 +51,57 @@ footer.layout nav li {
 	margin-right: 5px;
 }
 
+section {
+	margin-top: 90px;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid #e2edeb;
+	border-radius: 2px;
+}
+
+section > h2, section > h3 {
+	position: relative;
+	left: -30px;
+	top: -60px;
+	margin: 0px;
+	padding: 0px;
+}
+
+section > h2 ~ h3 {
+	position: inherit;
+}
+
+section h2 {
+	color: #009688;
+}
+
+section h3 {
+	color: inherit;
+}
+
+section .actions {
+	position: relative;
+	right: -30px;
+	top: -37px;
+	float: right;
+	background-color: #f2f2f2;
+	padding: 5px;
+}
+
+section .actions button, section .actions .button {
+	background: transparent;
+	border: 1px solid #fff;
+	color: #aaa;
+}
+
 .center {
 	margin: auto;
 }
 
 .container {
-	padding: 30px;
+	margin: 30px;
 }

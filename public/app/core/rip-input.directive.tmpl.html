@@ -31,6 +31,12 @@
   <!-- radiobuttongroup -->
   <p class="todo" ng-if="type==='radiobuttongroup'">radiobuttongroup</p>
 
+  <!-- search -->
+  <div ng-if="type==='search'">
+    <input type="search" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}">
+    <button type="button">Go</button>
+  </div>
+
   <!-- text -->
   <input type="text" id="{{name}}" name="{{name}}" placeholder="{{placeholder}}" ng-model="ngModel" ng-if="type==='text'">
 

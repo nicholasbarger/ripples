@@ -1,17 +1,17 @@
 (function() {
 	'use strict';
-	
+
 	angular
-		.module('app.ide')
-		.factory('rippleCreateService', function($window, rippleApi) {
+		.module('app.core')
+		.factory('rippleData', function (rippleApi) {
 			return {
-				cancel: cancel,
+				disable: disable,
 				newRipple: newRipple,
 				save: save
-			};
+			}
 
-			function cancel() {
-				$window.history.back();
+			function disable(_id) {
+				return rippleApi.call('delete', '/ripples/' + _id);
 			}
 
 			function newRipple() {

@@ -1,6 +1,9 @@
-button, input[type=submit] {
+button, input[type=submit], .button {
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ccc;
     margin: 2px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 10pt;
 }
