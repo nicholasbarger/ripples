@@ -1,6 +1,8 @@
 body {
 	font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
 	font-size: 12pt;
+	font-weight: 300;
+	color: #3D4051;
 }
 
 h1, h2, h3, h4, h5 {

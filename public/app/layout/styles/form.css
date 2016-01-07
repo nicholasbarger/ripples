@@ -11,9 +11,18 @@ form input, form textarea, form select {
     padding: 10px;
 }
 
+form label input[type='checkbox'] {
+    display: inline-block;
+}
+
+form input[type='search'] {
+    padding: 5px;
+}
 form input[type='search'] + button, form input[type='search'] .button {
-    padding: 0px;
-    margin-left: -5px;
+    padding: 5px;
+    margin-left: -10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 form.horizontal label, form.horizontal input, form.horizontal textarea, form.horizontal select {

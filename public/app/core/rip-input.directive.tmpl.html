@@ -1,8 +1,8 @@
 <div class="form-control">
-  <label for="{{name.toLower()}}">{{label}}</label>
+  <label for="{{name.toLower()}}" ng-if="type!=='checkbox'">{{label}}</label>
   
   <!-- checkbox -->
-  <input type="checkbox" id="{{name}}" name="{{name}}" ng-if="type==='checkbox'">
+  <label for="{{name.toLower()}}" ng-if="type==='checkbox'"><input type="checkbox" id="{{name}}" name="{{name}}">{{label}}</label>
 
   <!-- checkboxlist -->
   <p class="todo" ng-if="type==='checkboxlist'">checkboxlist</p>
