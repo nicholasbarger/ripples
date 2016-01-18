@@ -7,6 +7,8 @@
 			console.log('entered index controller for ide');
 			var vm = this;
 			vm.filter = ideIndexService.filter;
+			vm.isInfoModalVisible = false;
+			vm.toggleInfo = toggleInfo;
 			vm.ripples = [];
 
 			activate();
@@ -18,6 +20,10 @@
 					console.log('data loaded', data);
 					vm.ripples = data;
 				});
+			}
+
+			function toggleInfo() {
+				vm.isInfoVisible = !vm.isInfoVisible;
 			}
 		});
 })();

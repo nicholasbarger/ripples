@@ -7,6 +7,6 @@
 			console.log('RippleDetailController here', ripple);
 			var vm = this;
 			vm.ripple = ripple;
-			//vm.run = rippleService.run;
+			vm.selectedRipple = null;
 		});
 })();

@@ -8,7 +8,7 @@
 				disable: disable,
 				newRipple: newRipple,
 				save: save
-			}
+			};
 
 			function disable(_id) {
 				return rippleApi.call('delete', '/ripples/' + _id);

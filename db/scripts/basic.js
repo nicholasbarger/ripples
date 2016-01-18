@@ -17,19 +17,14 @@ db.ripples.insert({
 	"description": "Writes Hello to the console.",
 	"ripples": [{
 		"id": "35e9f4c1-677d-4fc7-bfe7-97252c479d26",
+		"display": "Say Hello Ripple",
+		"code": "console.log(input.greeting + ' Ripple'); cb();",
+		"description": "Writes Ripple to the console.",
+		"ripples": [],
+		"sampleInput": null,
+		"sampleOutput": null,
 		"version": "1"	
 	}],
-	"sampleInput": null,
-	"sampleOutput": null,
-	"version": "1"
-});
-
-db.ripples.insert({
-	"id": "35e9f4c1-677d-4fc7-bfe7-97252c479d26",
-	"display": "Say Hello Ripple",
-	"code": "console.log(input.greeting + ' Ripple'); cb();",
-	"description": "Writes Ripple to the console.",
-	"ripples": [],
 	"sampleInput": null,
 	"sampleOutput": null,
 	"version": "1"
