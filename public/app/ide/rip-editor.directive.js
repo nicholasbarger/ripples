@@ -15,16 +15,58 @@
 				templateUrl: 'ide/rip-editor.directive.tmpl.html',
 				controllerAs: 'ripEditorController',
     			bindToController: true,
-				controller: function() {
-					var canvas = null;
-					var canvasWidth = 0;
-					var columnCount = 0;
-					var left = 15;
-					var rippleWidth = 50;
-					var rippleHeight = 50;
-					var rippleMargin = 50;
-					var rowCount = 0;
-					var top = 50;
+				controller: function($scope) {
+					var 
+						// the pixel margin between arrow and ripples
+						arrowMargin = 50,
+
+						// extra top distance for arrow to center it
+						arrowTop = 50,
+
+						// the width of the arrow
+						arrowWidth = 15,
+
+						// reference to the snap.svg canvas
+						canvas = null,
+
+						// the pixel height of the canvas (set in activate)
+						canvasHeight = 100,  //default
+
+						// the pixel width of the canvas (set in activate)
+						canvasWidth = 0,
+
+						// keeps track of the columns used to draw ripples
+						columnCount = 0,
+
+						// initial left padding
+						initialLeft = 50,
+
+						// initial top padding
+						initialTop = 50,
+
+						// used when calculating left position of next ripple
+						left = initialLeft,
+
+						// the width of a drawn ripple
+						rippleWidth = 150,
+
+						// the height of a drawn ripple
+						rippleHeight = 100,
+
+						// the distance between ripples
+						rippleMargin = 50,
+
+						// keeps track of the rows used to draw ripples
+						rowCount = 0,
+
+						// extra left distance to start the text of the ripple
+						textLeft = 15,
+
+						// extra top distance to start the text of the ripple
+						textTop = 50,
+
+						// used when calculating top position of next ripple
+						top = initialTop;
 
 					var vm = this;
 					vm.draw = draw;
@@ -42,7 +84,7 @@
 					function activate() {
 						// setup canvas
 						canvas = Snap('#' + vm.svgid);
-						canvasWidth = $('#' + vm.id).width();
+						canvasWidth = $('#' + vm.svgid).width();
 
 						// initial draw
 						draw();
@@ -55,32 +97,47 @@
 
 					function drawArrow() {
 						// todo: get the proper position
-						canvas.circle(left + 10, top + 10, 25);
+						left += rippleWidth + arrowMargin;
+
+						// draw arrow
+						canvas.circle(left, top + arrowTop, arrowWidth).attr({ fill: '#333'});
 					}
 
 					function drawRipple(ripple) {
-						// increase the cnt
-						columnCount++;
+						// get the proper position
+						if(columnCount > 0) {
+							left += arrowMargin;
+						}
+						if(rowCount > 0) {
+							top = rowCount * (rippleHeight + rippleMargin);
+						}
 
 						// check if we make it to the end of the canvas
-						if(columnCount * (rippleWidth + rippleMargin) > canvasWidth) {
+						if(left > canvasWidth) {
 							// reset the columnCount and increase the rowCount
 							rowCount++;
 							columnCount = 0;
+							left = initialLeft;
+							top = initialTop;
 						}
 
-						// get the proper position
-						left = columnCount * (rippleWidth + rippleMargin);
-						top = rowCount * (rippleHeight + rippleMargin);
+						// draw ripple
+						var rippleRect = canvas.rect(left, top, rippleWidth, rippleHeight)
+											   .attr({fill: '#ccc', stroke: 'black'});
+
+						// write text
+						var rippleText = drawText(ripple);
+
+						// create group and wire up click
+						canvas.group(rippleRect, rippleText).click(function() {
+							selectRipple(ripple);
+						});
 
 						// draw connecting arrow
 						drawArrow(ripple);
 
-						// draw ripple
-						canvas.rect(left, top, rippleWidth, rippleHeight);
-
-						// write text
-						canvas.text(left, top, ripple.display).attr({color: 'white'});
+						// increase the cnt
+						columnCount++;
 
 						// execute recursion
 						if(ripple.ripples) {
@@ -88,10 +145,28 @@
 								drawRipple(currentRipple);
 							});
 						}
+
+						// update canvas height
+						updateCanvasHeight();
 					}
 
-					function getRippleWidth() {
+					function drawText(ripple) {
+						return canvas.text(left + textLeft, top + textTop, ripple.display)
+									 .attr({stroke: '#333'});
+					}
 
+					function selectRipple(ripple) {
+						vm.selectedRipple = ripple;
+						$scope.$apply();
+					}
+
+					function updateCanvasHeight() {
+						// get calculated height
+						canvasHeight = (rowCount + 1.5) * (rippleHeight + rippleMargin);
+						console.log(canvasHeight);
+
+						// set height
+						$('#' + vm.svgid).height(canvasHeight);
 					}
 				}
 			};

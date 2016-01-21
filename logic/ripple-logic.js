@@ -99,7 +99,7 @@ function execute(id, input, originalInstanceId) {
 function many(filter, cb) {
 	if(!filter) {
         filter = {};
-    }
+    }    
 
     var payload = new Payload();
     payload.data = [];
