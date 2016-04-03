@@ -7,7 +7,6 @@ var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
 
 var cssfiles = [
-  'public/app/bower_components/animate.css/animate.min.css',
   'public/app/layout/styles/*.css'
 ];
 var htmlfiles = 'public/app/**.html';
@@ -47,6 +46,15 @@ gulp.task('app-css', function() {
     .pipe(gulp.dest('public/app/'));
 });
 
+gulp.task('vendor-css', function() {
+  return gulp.src([
+      'public/app/bower_components/animate.css/animate.min.css',
+      'public/app/bower_components/angular-xeditable/dist/css/xeditable.css'
+    ])
+    .pipe(concat('vendor.css'))
+    .pipe(gulp.dest('public/app/'));
+});
+
 gulp.task('vendor-js', function() {
   var path = 'public/app/bower_components/';
   return gulp.src([
@@ -54,6 +62,7 @@ gulp.task('vendor-js', function() {
       path + 'lodash/dist/lodash.js',
       path + 'angular/angular.js',
       path + 'angular-route/angular-route.js',
+      path + 'angular-xeditable/dist/js/xeditable.js',
       path + 'moment/min/moment-with-locales.js',
       path + 'Snap.svg/dist/snap.svg.js'
     ])
@@ -62,11 +71,16 @@ gulp.task('vendor-js', function() {
     .pipe(gulp.dest('public/app/'));
 });
 
-gulp.task('production', ['vendor-js', 'app-css', 'app-js-prod']);
+gulp.task('production', ['vendor-js', 'vendor-css', 'app-css', 'app-js-prod']);
 
-gulp.task('watch', ['vendor-js', 'app-js', 'app-css'], function() {
+gulp.task('watch', ['vendor-js', 'vendor-css', 'app-js', 'app-css'], function() {
     return gulp.watch(
-    	['public/**/*.*', '!public/app/build.js', '!public/app/vendor.js'], 
+    	[
+        'public/**/*.*', 
+        '!public/app/build.js', 
+        '!public/app/vendor.js', 
+        '!public/app/vendor.css'
+      ], 
     	['app-js', 'app-css']);
 });
 

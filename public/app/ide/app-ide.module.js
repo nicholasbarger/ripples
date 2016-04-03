@@ -2,5 +2,5 @@
 	'use strict';
 
 	angular
-		.module('app.ide', ['app.core']);
+		.module('app.ide', ['app.core', 'xeditable']);
 })();

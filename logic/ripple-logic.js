@@ -15,7 +15,7 @@ var instanceLogic = require('./instance-logic.js');
 
 module.exports = {
     clone: clone,
-    execute: execute,
+    run: run,
 	many: many,
 	save: save,
     single: single
@@ -38,7 +38,7 @@ function clone(id, cb) {
     });
 }
 
-function execute(id, input, originalInstanceId) {
+function run(id, input, originalInstanceId) {
     var i = 0,
         instance,
         payload = new Payload(),
@@ -64,7 +64,7 @@ function execute(id, input, originalInstanceId) {
                 // todo: should we do something here?
             });
 
-            // execute ripple
+            // run ripple
             run(input, function(output) {
 
                 // update instance
@@ -76,13 +76,13 @@ function execute(id, input, originalInstanceId) {
                     // todo: should we do something here?
                 });
 
-                // look for next ripples to execute
+                // look for next ripples to run
                 if(ripple.ripples && ripple.ripples.length > 0) {
                     for(i = 0; i < ripple.ripples.length; i++) {
 
                         // pass the output from the parent ripple as input
                         // to the next wave of ripples
-                        execute(ripple.ripples[i].id, output, ripple.id);
+                        run(ripple.ripples[i].id, output, ripple.id);
                     }
                 }
             });

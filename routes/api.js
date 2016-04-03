@@ -68,10 +68,10 @@ module.exports = function(app) {
 
   });
 
-  // execute ripple
-  app.post('/api/v1/execute/:id', function (req, res) {
+  // run ripple
+  app.post('/api/v1/run/:id', function (req, res) {
     
-    var payload = rippleLogic.execute(req.params.id, req.body);
+    var payload = rippleLogic.run(req.params.id, req.body);
 
     // todo: rewrite this response
     res.json('Ripple started');

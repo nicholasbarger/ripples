@@ -28,7 +28,9 @@ module.exports = function(obj) {
     sampleOutput: obj.sampleOutput || null,
 
     // the version of this ripple
-    version: obj.version || 1
+    version: obj.version || 1,
     
+    // additional versions available for this ripple
+    versions: obj.versions || []
   };
 };

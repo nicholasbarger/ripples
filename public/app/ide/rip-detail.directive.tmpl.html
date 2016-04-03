@@ -1,0 +1,19 @@
+<h2>{{ ripDetailVm.ripple.display }}</h2>
+<p>{{ ripDetailVm.ripple.description }}</p>
+
+<div class="actions">
+	<button type="button">Version {{ ripDetailVm.ripple.version }} <i class="fa fa-caret-down"></i></button>
+	<button type="button" ng-click="ripDetailVm.edit()"><i class="fa fa-edit"></i> Edit</button>
+    <button type="button" ng-click="ripDetailVm.run()"><i class="fa fa-play"></i> Run</button>
+</div>
+
+<h4>Sample Input</h4>
+<i ng-show="!(ripDetailVm.ripple.sampleInput)">None provided.</i>
+<code ng-bind="ripDetailVm.ripple.sampleInput" ng-show="ripDetailVm.ripple.sampleInput"></code>
+
+<h4>Sample Output</h4>
+<i ng-show="!(ripDetailVm.ripple.sampleOutput)">None provided.</i>
+<code ng-bind="ripDetailVm.ripple.sampleOutput" ng-show="ripDetailVm.ripple.sampleOutput"></code>
+
+<h3>Process Diagram Relationships</h3>
+<rip-editor id="editor" include-code="true" ripple="ripDetailVm.ripple"></rip-editor>

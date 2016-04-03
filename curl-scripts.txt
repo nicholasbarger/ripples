@@ -20,8 +20,8 @@ curl -H "Content-Type: application/json" -X POST -d '{"id": "a3451ac3-3742-41c7-
 	"sampleOutput": null,
 	"version": "1"}' http://localhost:8080/api/v1/ripples/a3451ac3-3742-41c7-a865-0b025e22f63b
 
--- execute the sample ripple
-curl -H "Content-Type: application/json" -X POST -d '{}' http://localhost:8080/api/v1/execute/a3451ac3-3742-41c7-a865-0b025e22f63b
+-- run the sample ripple
+curl -H "Content-Type: application/json" -X POST -d '{}' http://localhost:8080/api/v1/run/a3451ac3-3742-41c7-a865-0b025e22f63b
 
 -- get all instances
 curl http://localhost:8080/api/v1/instances

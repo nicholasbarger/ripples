@@ -1,4 +1,4 @@
-<section>
+<section class="main-content">
 	<h2>Active Ripples</h2>
 	<a href="" ng-click="vm.toggleInfo()"><i class="fa fa-info-circle"></i></a>
 
@@ -10,9 +10,6 @@
 	<rip-filter data="vm.filter"></rip-filter>
 
 	<!-- todo: display grid of ripples (replace below) -->
-	<!-- <rip-grid data="vm.ripples"> -->
-		<!-- todo: transcluded data should be in here, more directives? -->
-	<!-- </rip-grid> -->
 	<table class="grid">
 		<thead>
 			<tr>
@@ -23,7 +20,7 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="ripple in vm.ripples">
-				<td><a href="#/ide/detail/{{ripple.id}}">{{ ripple.display }}</a></td>
+				<td><a href="" ng-click="vm.selectRipple(ripple)">{{ ripple.display }}</a></td>
 				<td>{{ ripple.version }}</td>
 				<td><!-- todo: add action context menu here --></td>
 			</tr>
@@ -38,7 +35,7 @@
 	</table>
 </section>
 
-<section id="info" class="side-panel animated bounceIn" ng-show="vm.isInfoVisible">
+<section id="info" class="side-panel animated slideInRight" ng-show="vm.isInfoVisible">
 	
 	<h2>Information</h2>
 	<p>Ripple Builder let's you compose independent chunks of code into short and long running processes.  Each code is ran in it's own container, so each segment can use a different language or toolset that best suits it's needs.  Ripples can be composed of code you provide or easily pulled down from the gallery.</p>
@@ -47,6 +44,10 @@
 	<h3>Active Ripples</h3>
 	<p>By default, we only show active top-level Ripples that you have created or added from the gallery.</p>
 	
+	<pre>{{ vm.ripples | json }}</pre>
 </section>
 
-<pre>{{ vm.ripples | json }}</pre>
+<section id="detail" class="side-panel animated slideInRight" ng-show="vm.isDetailVisible">
+
+	<rip-detail ripple="vm.selectedRipple"></rip-detail>
+</section>

@@ -83,7 +83,7 @@
 
 					function activate() {
 						// setup canvas
-						canvas = Snap('#' + vm.svgid);
+						canvas = new Snap('#' + vm.svgid);
 						canvasWidth = $('#' + vm.svgid).width();
 
 						// initial draw
