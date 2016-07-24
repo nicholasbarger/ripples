@@ -1,53 +1,53 @@
 <section class="main-content">
-	<h2>Active Ripples</h2>
-	<a href="" ng-click="vm.toggleInfo()"><i class="fa fa-info-circle"></i></a>
+  <h2>Active Ripples</h2>
+  <a href="" ng-click="vm.toggleInfo()"><i class="fa fa-info-circle"></i></a>
 
-	<div class="actions">
-		<a href="#/ide/create" class="button"><i class="fa fa-plus"></i> Add</a>
-	</div>
+  <div class="actions">
+    <a href="#/ide/create" class="button"><i class="fa fa-plus"></i> Add</a>
+  </div>
 
-	<!-- filter ripples -->
-	<rip-filter data="vm.filter"></rip-filter>
+  <!-- filter ripples -->
+  <rip-filter data="vm.filter"></rip-filter>
 
-	<!-- todo: display grid of ripples (replace below) -->
-	<table class="grid">
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Version</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="ripple in vm.ripples">
-				<td><a href="" ng-click="vm.selectRipple(ripple)">{{ ripple.display }}</a></td>
-				<td>{{ ripple.version }}</td>
-				<td><!-- todo: add action context menu here --></td>
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="3">
-					<!-- todo: add pager here -->
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+  <!-- todo: display grid of ripples (replace below) -->
+  <table class="grid">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Version</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="ripple in vm.ripples">
+        <td><a href="" ng-click="vm.selectRipple(ripple)">{{ ripple.display }}</a></td>
+        <td>{{ ripple.version }}</td>
+        <td><!-- todo: add action context menu here --></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">
+          <!-- todo: add pager here -->
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </section>
 
 <section id="info" class="side-panel animated slideInRight" ng-show="vm.isInfoVisible">
-	
-	<h2>Information</h2>
-	<p>Ripple Builder let's you compose independent chunks of code into short and long running processes.  Each code is ran in it's own container, so each segment can use a different language or toolset that best suits it's needs.  Ripples can be composed of code you provide or easily pulled down from the gallery.</p>
-	<p>All changes are version-controlled and easily forked to allow customizations.</p>
+  
+  <h2>Information</h2>
+  <p>Ripple Builder let's you compose independent chunks of code into short and long running processes.  Each code is ran in it's own container, so each segment can use a different language or toolset that best suits it's needs.  Ripples can be composed of code you provide or easily pulled down from the gallery.</p>
+  <p>All changes are version-controlled and easily forked to allow customizations.</p>
 
-	<h3>Active Ripples</h3>
-	<p>By default, we only show active top-level Ripples that you have created or added from the gallery.</p>
-	
-	<pre>{{ vm.ripples | json }}</pre>
+  <h3>Active Ripples</h3>
+  <p>By default, we only show active top-level Ripples that you have created or added from the gallery.</p>
+  
+  <pre>{{ vm.ripples | json }}</pre>
 </section>
 
 <section id="detail" class="side-panel animated slideInRight" ng-show="vm.isDetailVisible">
 
-	<rip-detail ripple="vm.selectedRipple"></rip-detail>
+  <rip-detail ripple="vm.selectedRipple"></rip-detail>
 </section>
