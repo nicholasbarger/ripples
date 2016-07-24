@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "watch": "nodemon -e js,html server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/jasmine-node tests/unit"
   },
   "keywords": [
     "ripples"
@@ -25,12 +25,15 @@
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
+    "gulp-jasmine": "^2.4.0",
     "gulp-jshint": "^2.0.0",
     "gulp-ng-annotate": "^1.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
     "gulp-watch": "^4.3.5",
+    "jasmine-node": "^1.14.5",
     "jshint": "^2.8.0",
-    "jshint-stylish": "^2.1.0"
+    "jshint-stylish": "^2.1.0",
+    "request": "^2.74.0"
   }
 }

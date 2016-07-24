@@ -1,12 +1,16 @@
 var uuid = require('node-uuid');
 
 module.exports = function(obj) {
+  if(!obj) {
+    obj = {};
+  }
+
   return {
 
-  	// the unique id as a guid
+    // the unique id as a guid
     id: obj.id || uuid.v4(),
 
-	// the code to execute during this ripple
+    // the code to execute during this ripple
     code: obj.code || 'console.log(\'Hello ripples\');',
 
     // the title of the ripple code
@@ -15,7 +19,7 @@ module.exports = function(obj) {
     // the description of the executing code
     description: obj.description || 'A sample description',
 
-	// original ripple if forked
+    // original ripple if forked
     fork: obj.fork || null,
 
     // ripples to propegate after completion (executed in async parallel)
@@ -31,6 +35,6 @@ module.exports = function(obj) {
     version: obj.version || 1,
     
     // additional versions available for this ripple
-    versions: obj.versions || []
+    versions: obj.versions || [ obj.version || 1 ]
   };
 };

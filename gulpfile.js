@@ -5,6 +5,7 @@ var jshint = require('gulp-jshint');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var watch = require('gulp-watch');
+var jasmine = require('gulp-jasmine');
 
 var cssfiles = [
   'public/app/layout/styles/*.css'
@@ -21,7 +22,7 @@ var jsfiles = [
   '!public/app/bower_components/**/*'
 ];
 
-gulp.task('app-js', function() {
+gulp.task('app-js', ['test'], function() {
   return gulp.src(jsfiles)
   	.pipe(jshint())
   	.pipe(jshint.reporter('jshint-stylish'))
@@ -44,6 +45,13 @@ gulp.task('app-css', function() {
   return gulp.src(cssfiles)
     .pipe(concat('build.css'))
     .pipe(gulp.dest('public/app/'));
+});
+
+gulp.task('test', function() {
+  return gulp.src([
+    'tests/unit/*.spec.js'
+  ])
+  .pipe(jasmine());
 });
 
 gulp.task('vendor-css', function() {
@@ -75,10 +83,14 @@ gulp.task('dev', ['vendor-js', 'vendor-css', 'app-css', 'app-js']);
 
 gulp.task('production', ['vendor-js', 'vendor-css', 'app-css', 'app-js-prod']);
 
-gulp.task('watch', ['vendor-js', 'vendor-css', 'app-js', 'app-css'], function() {
+gulp.task('watch', ['dev'], function() {
     return gulp.watch(
     	[
-        'public/**/*.*', 
+        'public/**/*.*',
+        'logic/**/*.*',
+        'models/**/*.*',
+        'routes/**/*.*', 
+        'tests/**/*.spec.js',
         '!public/app/build.js', 
         '!public/app/vendor.js', 
         '!public/app/vendor.css'
