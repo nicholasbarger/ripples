@@ -71,6 +71,8 @@ gulp.task('vendor-js', function() {
     .pipe(gulp.dest('public/app/'));
 });
 
+gulp.task('dev', ['vendor-js', 'vendor-css', 'app-css', 'app-js']);
+
 gulp.task('production', ['vendor-js', 'vendor-css', 'app-css', 'app-js-prod']);
 
 gulp.task('watch', ['vendor-js', 'vendor-css', 'app-js', 'app-css'], function() {

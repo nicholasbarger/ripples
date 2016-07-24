@@ -70,7 +70,6 @@
 
           var vm = this;
           vm.draw = draw;
-          vm.ripples = vm.ripple.ripples;
           vm.selectedRipple = vm.ripple;
           vm.svgid = 'svg_editor';
 

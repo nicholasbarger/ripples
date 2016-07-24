@@ -3,42 +3,22 @@
 
   angular
     .module('app.ide')
-    .controller('IdeIndexController', function(ideIndexService) {
-      console.log('entered index controller for ide');
+    .controller('IdeIndexController', function(ideIndexService, ripples) {
+      
       var vm = this;
-      vm.filter = ideIndexService.filter;
-      vm.isDetailVisible = false;
-      vm.isInfoModalVisible = false;
-      vm.selectedRipple = null;
-      vm.selectRipple = selectRipple;
-      vm.toggleInfo = toggleInfo;
-      vm.ripples = [];
+      var state = ideIndexService.getInitialState();
 
-      activate();
+      // properties
+      vm.filter = state.filter;
+      vm.isDetailVisible = state.isDetailVisible;
+      vm.isInfoModalVisible = state.isInfoModalVisible;
+      vm.ripples = ripples;
+      vm.selectedRipple = state.selectedRipple;
+      
+      // methods
+      vm.selectRipple = ideIndexService.selectRipple;
+      vm.toggleInfo = ideIndexService.toggleInfo;
+      vm.save = ideIndexService.save;
 
-      function activate() {
-        console.log('loading data');
-        // load data
-        ideIndexService.load(vm.filter).then(function(data) {
-          console.log('data loaded', data);
-          vm.ripples = data;
-        });
-      }
-
-      function selectRipple(ripple) {
-        // toggle display of detail panel
-        if (vm.selectedRipple != ripple) {
-          vm.isDetailVisible = true;
-        } else {
-          vm.isDetailVisible = false;
-        }
-        
-        // select ripple to view details
-        vm.selectedRipple = ripple;
-      }
-
-      function toggleInfo() {
-        vm.isInfoVisible = !vm.isInfoVisible;
-      }
     });
 })();

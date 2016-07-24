@@ -1,6 +1,6 @@
 <section class="main-content">
   <h2>Active Ripples</h2>
-  <a href="" ng-click="vm.toggleInfo()"><i class="fa fa-info-circle"></i></a>
+  <a href="" ng-click="vm.toggleInfo(vm)"><i class="fa fa-info-circle"></i></a>
 
   <div class="actions">
     <a href="#/ide/create" class="button"><i class="fa fa-plus"></i> Add</a>
@@ -20,7 +20,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="ripple in vm.ripples">
-        <td><a href="" ng-click="vm.selectRipple(ripple)">{{ ripple.display }}</a></td>
+        <td><a href="" ng-click="vm.selectRipple(vm, ripple)">{{ ripple.display }}</a></td>
         <td>{{ ripple.version }}</td>
         <td><!-- todo: add action context menu here --></td>
       </tr>
@@ -34,6 +34,8 @@
     </tfoot>
   </table>
 </section>
+
+<pre>{{ vm.selectedRipple | json }}</pre>
 
 <section id="info" class="side-panel animated slideInRight" ng-show="vm.isInfoVisible">
   
@@ -49,5 +51,5 @@
 
 <section id="detail" class="side-panel animated slideInRight" ng-show="vm.isDetailVisible">
 
-  <rip-detail ripple="vm.selectedRipple"></rip-detail>
+  <rip-detail ng-if="vm.selectedRipple" ripple="vm.selectedRipple"></rip-detail>
 </section>
