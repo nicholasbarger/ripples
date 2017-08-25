@@ -26,9 +26,11 @@
         return rippleService.many(getInitialState().filter);
       }
 
-      function save(vm, ripple) {
-        // todo
-        return null;
+      function save(ripple) {
+        rippleService.save(ripple).then(function(data) {
+          // todo: visual indication that save was successful
+          console.log('saved', data);
+        });
       }
 
       function selectRipple(vm, ripple) {

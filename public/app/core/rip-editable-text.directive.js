@@ -8,8 +8,11 @@
         restrict: 'A',
         scope: {
 
-          // todo: the model to bind to (special attribute in angular)
-          ngModel: '='
+          // the model to bind to (special attribute in angular)
+          ngModel: '=',
+
+          // a save method delegate to call after they are finished editing
+          save: '='
 
         },
         require: 'ngModel',
@@ -86,6 +89,11 @@
 
             // reset oldNgModelValue since it was intentionally committed
             oldNgModelValue = null;
+
+            // call the delegate if provided
+            if ($scope.save) {
+              $scope.save($scope.ngModel);
+            }
           }
 
           function stopEditing() {

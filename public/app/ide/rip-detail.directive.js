@@ -7,7 +7,8 @@
       return {
         restrict: 'E',
         scope: {
-          ripple: '='
+          ripple: '=',
+          save: '='
         },
         templateUrl: 'ide/rip-detail.directive.tmpl.html',
         controllerAs: 'ripDetailVm',

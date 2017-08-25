@@ -49,7 +49,8 @@ gulp.task('app-css', function() {
 
 gulp.task('test', function() {
   return gulp.src([
-    'tests/unit/*.spec.js'
+    'tests/unit/*.spec.js',
+    'public/app/*/tests/*.spec.js'
   ])
   .pipe(jasmine());
 });
